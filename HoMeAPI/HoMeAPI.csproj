@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DbContext\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
