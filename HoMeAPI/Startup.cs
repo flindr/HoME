@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HoMeAPI.Controllers;
 using HoMeAPI.Entities;
 using HoMeAPI.Models;
+using HoMeAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

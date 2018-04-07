@@ -1,11 +1,10 @@
-﻿using HoMeAPI.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace HoMeAPI.Entities
 {
-    public class MeasurementsContext : DbContext
+    public sealed class MeasurementsContext : DbContext
     {
-        public MeasurementsContext(DbContextOptions<MeasurementsContext> options) : base(options)
+        public MeasurementsContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
             //Database.Migrate();

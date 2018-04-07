@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoMapper;
 using HoMeAPI.Entities;
 using HoMeAPI.Models;
+using HoMeAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HoMeAPI.Controllers
@@ -75,43 +72,5 @@ namespace HoMeAPI.Controllers
         public void Delete(int id)
         {
         }
-    }
-
-    public class MeasurementsRepository : IMeasurementsRepository
-    {
-        private MeasurementsContext _context;
-
-        public MeasurementsRepository(MeasurementsContext context)
-        {
-            _context = context;
-        }
-
-        public MeasurementDto GetMeasurement(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool AddMeasurement(Measurement measurement)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteMeasurement(int measurementId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<MeasurementDto> GetMeasurements()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface IMeasurementsRepository
-    {
-        MeasurementDto GetMeasurement(int id);
-        bool AddMeasurement(Measurement measurement);
-        bool DeleteMeasurement(int measurementId);
-        IEnumerable<MeasurementDto> GetMeasurements();
     }
 }
