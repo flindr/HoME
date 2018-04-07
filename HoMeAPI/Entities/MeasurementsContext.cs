@@ -6,8 +6,8 @@ namespace HoMeAPI.Entities
     {
         public MeasurementsContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
-            //Database.Migrate();
+            //Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<Measurement> Measurements { get; set; }
