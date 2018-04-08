@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using AutoMapper;
 using HoMeAPI.Entities;
 using HoMeAPI.Models;
@@ -47,6 +48,11 @@ namespace HoMeAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]MeasurementDto measurementDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (measurementDto == null)
             {
                 return BadRequest();
@@ -54,6 +60,7 @@ namespace HoMeAPI.Controllers
 
             var measurement = Mapper.Map<Measurement>(measurementDto);
 
+            //TODO How to handle errors?
             var success = _measurementsRepository.AddMeasurement(measurement);
 
             if (success)
@@ -71,6 +78,9 @@ namespace HoMeAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _measurementsRepository.DeleteMeasurement(id);
+
+
         }
     }
 }

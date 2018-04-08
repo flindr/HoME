@@ -12,7 +12,7 @@ namespace HoMeAPI.Entities
         [Required]
         public float Temperature { get; set; }
         [Required]
-        public float Humdidity { get; set; }
+        public float Humidity { get; set; }
         public Location Location { get; set; }
     }
 }

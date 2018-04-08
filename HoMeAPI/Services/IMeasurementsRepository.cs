@@ -6,9 +6,9 @@ namespace HoMeAPI.Services
 {
     public interface IMeasurementsRepository
     {
-        MeasurementDto GetMeasurement(int id);
+        Measurement GetMeasurement(int id);
         bool AddMeasurement(Measurement measurement);
         bool DeleteMeasurement(int measurementId);
-        IEnumerable<MeasurementDto> GetMeasurements();
+        IEnumerable<Measurement> GetMeasurements();
     }
 }
