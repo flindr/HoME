@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 using AutoMapper;
 using HoMeAPI.Entities;
 using HoMeAPI.Models;
@@ -11,7 +10,7 @@ namespace HoMeAPI.Controllers
     [Route("api/[controller]")]
     public class MeasurementsController : Controller
     {
-        private IMeasurementsRepository _measurementsRepository;
+        private readonly IMeasurementsRepository _measurementsRepository;
 
         public MeasurementsController(IMeasurementsRepository measurementsRepository)
         {
@@ -70,8 +69,25 @@ namespace HoMeAPI.Controllers
 
         // PUT api/measurements/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]MeasurementDto measurement)
         {
+            if (measurement == null)
+                return BadRequest();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var measurementEntity = _measurementsRepository.GetMeasurement(id);
+
+            if (measurementEntity == null)
+                return NotFound();
+
+            Mapper.Map(measurement, measurementEntity);
+
+            if(!_measurementsRepository.Save())
+                return StatusCode(500, "Something went wrong trying to update the measurement.");
+
+            return Ok();
         }
 
         // DELETE api/measurements/5
@@ -79,8 +95,6 @@ namespace HoMeAPI.Controllers
         public void Delete(int id)
         {
             _measurementsRepository.DeleteMeasurement(id);
-
-
         }
     }
 }

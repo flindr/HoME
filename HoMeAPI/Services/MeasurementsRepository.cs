@@ -36,6 +36,11 @@ namespace HoMeAPI.Services
             return true;
         }
 
+        public bool UpdateMeasurement(Measurement measurementToUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool DeleteMeasurement(int measurementId)
         {
             var measurementToDelete = _context.Measurements.FirstOrDefault(m => m.Id == measurementId);
@@ -51,6 +56,11 @@ namespace HoMeAPI.Services
         public IEnumerable<Measurement> GetMeasurements()
         {
             return _context.Measurements;
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() >= 0;
         }
     }
 }

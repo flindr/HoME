@@ -8,7 +8,9 @@ namespace HoMeAPI.Services
     {
         Measurement GetMeasurement(int id);
         bool AddMeasurement(Measurement measurement);
+        bool UpdateMeasurement(Measurement measurementToUpdate);
         bool DeleteMeasurement(int measurementId);
         IEnumerable<Measurement> GetMeasurements();
+        bool Save();
     }
 }
