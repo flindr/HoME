@@ -31,8 +31,7 @@ namespace HoMeAPI
         {
             services.AddMvc();
 
-            var connectionString =
-                @"Data Source=(localdb)\MSSQLLocalDB;Database=Measurements;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            var connectionString = Configuration["ConnectionStrings:MeasurementsDbConnectionString"];
             services.AddDbContext<MeasurementsContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IMeasurementsRepository, MeasurementsRepository>();
