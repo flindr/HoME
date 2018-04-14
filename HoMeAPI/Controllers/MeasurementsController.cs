@@ -4,6 +4,7 @@ using HoMeAPI.Entities;
 using HoMeAPI.Models;
 using HoMeAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace HoMeAPI.Controllers
 {
@@ -11,9 +12,11 @@ namespace HoMeAPI.Controllers
     public class MeasurementsController : Controller
     {
         private readonly IMeasurementsRepository _measurementsRepository;
+        private ILogger<MeasurementsController> _logger;
 
-        public MeasurementsController(IMeasurementsRepository measurementsRepository)
+        public MeasurementsController(IMeasurementsRepository measurementsRepository, ILogger<MeasurementsController> logger)
         {
+            _logger = logger;
             _measurementsRepository = measurementsRepository;
         }
 
@@ -21,6 +24,7 @@ namespace HoMeAPI.Controllers
         [HttpGet]
         public IActionResult GetMeasurements()
         {
+            _logger.LogInformation("Getting measurements");
             var measurements = _measurementsRepository.GetMeasurements();
 
             if (!measurements.Any())
