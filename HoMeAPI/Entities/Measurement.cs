@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HoMeAPI.Models;
 
@@ -14,5 +15,6 @@ namespace HoMeAPI.Entities
         [Required]
         public float Humidity { get; set; }
         public Location Location { get; set; }
+        public DateTime Time { get; set; }
     }
 }
