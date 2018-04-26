@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using HoMeAPI.Entities;
 using HoMeAPI.Models;
@@ -22,10 +24,22 @@ namespace HoMeAPI.Controllers
 
         // GET api/measurements
         [HttpGet]
-        public IActionResult GetMeasurements()
+        public IActionResult GetMeasurements([FromQuery]string from, [FromQuery]string to)
         {
-            _logger.LogInformation("Getting measurements");
-            var measurements = _measurementsRepository.GetMeasurements();
+            DateTime.TryParse(from, out var fromDateTime);
+            DateTime.TryParse(to, out var toDateTime);
+
+            List<Measurement> measurements;
+            if (from == null || to == null)
+            {
+                _logger.LogInformation("Getting measurements");
+                measurements = _measurementsRepository.GetMeasurements().ToList();
+            }
+            else
+            {
+                measurements = _measurementsRepository.GetMeasurements(fromDateTime, toDateTime).ToList();
+            }
+
 
             if (!measurements.Any())
             {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HoMeAPI.Entities;
 using HoMeAPI.Models;
 
@@ -10,7 +11,7 @@ namespace HoMeAPI.Services
         bool AddMeasurement(Measurement measurement);
         bool UpdateMeasurement(Measurement measurementToUpdate);
         bool DeleteMeasurement(int measurementId);
-        IEnumerable<Measurement> GetMeasurements();
+        IEnumerable<Measurement> GetMeasurements(DateTime? from = null, DateTime? to = null);
         bool Save();
     }
 }

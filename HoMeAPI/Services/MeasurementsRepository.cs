@@ -53,9 +53,11 @@ namespace HoMeAPI.Services
             return true;
         }
 
-        public IEnumerable<Measurement> GetMeasurements()
+        public IEnumerable<Measurement> GetMeasurements(DateTime? from = null, DateTime? to = null)
         {
-            return _context.Measurements;
+            if (from == null || to == null)
+                return _context.Measurements;
+            return _context.Measurements.Where(m => m.Time > @from && m.Time < to);
         }
 
         public bool Save()
