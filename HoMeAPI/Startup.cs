@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HoMeAPI.Controllers;
-using HoMeAPI.Entities;
+﻿using HoMeAPI.Entities;
 using HoMeAPI.Models;
 using HoMeAPI.Services;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NLog.Extensions.Logging;
 
 namespace HoMeAPI
@@ -31,6 +25,8 @@ namespace HoMeAPI
         {
             services.AddMvc();
 
+            services.AddCors();
+
             var connectionString = Configuration["ConnectionStrings:MeasurementsDbConnectionString"];
             services.AddDbContext<MeasurementsContext>(o => o.UseSqlServer(connectionString));
 
@@ -46,6 +42,11 @@ namespace HoMeAPI
             loggerFactory.AddDebug();
 
             loggerFactory.AddNLog();
+
+            app.UseCors(builder =>
+                builder.WithOrigins("http://fredriklindrothhome.azurewebsites.net")
+                    .AllowAnyHeader()
+            );
 
             if (env.IsDevelopment())
             {
