@@ -11,5 +11,6 @@ namespace HoMeAPI.Entities
         }
 
         public DbSet<Measurement> Measurements { get; set; }
+        public DbSet<BodyMeasurement> BodyMeasurements { get; set; }
     }
 }
