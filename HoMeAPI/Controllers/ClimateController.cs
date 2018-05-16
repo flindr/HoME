@@ -11,12 +11,12 @@ using Microsoft.Extensions.Logging;
 namespace HoMeAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class MeasurementsController : Controller
+    public class ClimateController : Controller
     {
         private readonly IMeasurementsRepository _measurementsRepository;
-        private ILogger<MeasurementsController> _logger;
+        private readonly ILogger<ClimateController> _logger;
 
-        public MeasurementsController(IMeasurementsRepository measurementsRepository, ILogger<MeasurementsController> logger)
+        public ClimateController(IMeasurementsRepository measurementsRepository, ILogger<ClimateController> logger)
         {
             _logger = logger;
             _measurementsRepository = measurementsRepository;

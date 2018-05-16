@@ -31,6 +31,7 @@ namespace HoMeAPI
             services.AddDbContext<MeasurementsContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IMeasurementsRepository, MeasurementsRepository>();
+            services.AddScoped<IBodyMeasurementsRepository, BodyMeasurementsRepository>();
 
         }
 
@@ -53,10 +54,13 @@ namespace HoMeAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            AutoMapper.Mapper.Initialize(cfg => 
-                cfg.CreateMap<MeasurementDto, Measurement>()
+            AutoMapper.Mapper.Initialize(cfg =>
+                {
+                    cfg.CreateMap<MeasurementDto, Measurement>();
+                    cfg.CreateMap<BodyMeasurementDto, BodyMeasurement>();
+                }
             );
-
+            
             app.UseMvc();
         }
     }
