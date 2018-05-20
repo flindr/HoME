@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace HoMeAPI.Models
 {
-    public abstract class BodyMeasurementDto
+    public class BodyMeasurementDto
     {
         [Required(ErrorMessage = "Must be float/int.")]
         public float Weight { get; set; }

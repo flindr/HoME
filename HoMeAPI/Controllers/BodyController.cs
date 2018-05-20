@@ -87,7 +87,7 @@ namespace HoMeAPI.Controllers
 
         // PUT api/measurements/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]MeasurementDto bodyMeasurement)
+        public IActionResult Put(int id, [FromBody]BodyMeasurementDto bodyMeasurement)
         {
             if (bodyMeasurement == null)
                 return BadRequest();
