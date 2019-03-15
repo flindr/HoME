@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/measurements",
+      "launchUrl": "api/climate",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,7 +19,7 @@
     "HoMeAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/measurements",
+      "launchUrl": "api/climate",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

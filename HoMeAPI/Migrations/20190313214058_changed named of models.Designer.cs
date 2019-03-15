@@ -12,9 +12,10 @@ using System;
 namespace HoMeAPI.Migrations
 {
     [DbContext(typeof(MeasurementsContext))]
-    partial class MeasurementsContextModelSnapshot : ModelSnapshot
+    [Migration("20190313214058_changed named of models")]
+    partial class changednamedofmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

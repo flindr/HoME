@@ -30,7 +30,7 @@ namespace HoMeAPI
             var connectionString = Configuration["ConnectionStrings:MeasurementsDbConnectionString"];
             services.AddDbContext<MeasurementsContext>(o => o.UseSqlServer(connectionString));
 
-            services.AddScoped<IMeasurementsRepository, MeasurementsRepository>();
+            services.AddScoped<IClimateMeasurementsRepository, ClimateMeasurementsRepository>();
             services.AddScoped<IBodyMeasurementsRepository, BodyMeasurementsRepository>();
 
         }
@@ -56,7 +56,7 @@ namespace HoMeAPI
 
             AutoMapper.Mapper.Initialize(cfg =>
                 {
-                    cfg.CreateMap<MeasurementDto, Measurement>();
+                    cfg.CreateMap<ClimateMeasurementDto, ClimateMeasurement>();
                     cfg.CreateMap<BodyMeasurementDto, BodyMeasurement>();
                 }
             );

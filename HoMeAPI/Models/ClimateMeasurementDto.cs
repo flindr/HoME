@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace HoMeAPI.Models
 {
-    public class MeasurementDto
+    public class ClimateMeasurementDto
     {
         [Required(ErrorMessage = "Must be float/int.")]
         public float Temperature { get; set; }

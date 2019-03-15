@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/c75372b8-c6ff-4404-b997-25e20378daa4/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HoMeAPI</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/c75372b8-c6ff-4404-b997-25e20378daa4/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HoMeAPI</ApplicationInsightsAnnotationResourceId>
+    <UserSecretsId>6f0a0a2e-5c3f-499b-acbb-18cf4783dbd1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

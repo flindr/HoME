@@ -22,7 +22,7 @@ namespace HoMeAPI.Controllers
             _bodyMeasurementsRepository = bodyMeasurementsRepository;
         }
 
-        // GET api/measurements
+        // GET api/body
         [HttpGet]
         public IActionResult GetBodyMeasurements([FromQuery]string from, [FromQuery]string to)
         {
@@ -49,7 +49,7 @@ namespace HoMeAPI.Controllers
             return Ok(bodyMeasurements);
         }
 
-        // GET api/measurements/5
+        // GET api/body/5
         [HttpGet("{id}")]
         public IActionResult GetBodyMeasurement(int id)
         {
@@ -61,7 +61,7 @@ namespace HoMeAPI.Controllers
             return Ok(bodyMeasurement);
         }
 
-        // POST api/measurements
+        // POST api/body
         [HttpPost]
         public IActionResult Post([FromBody]BodyMeasurementDto bodyMeasurementDto)
         {
@@ -85,7 +85,7 @@ namespace HoMeAPI.Controllers
             return BadRequest();
         }
 
-        // PUT api/measurements/5
+        // PUT api/body/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]BodyMeasurementDto bodyMeasurement)
         {
@@ -95,20 +95,20 @@ namespace HoMeAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var measurementEntity = _bodyMeasurementsRepository.GetBodyMeasurement(id);
+            var bodymeasurementEntity = _bodyMeasurementsRepository.GetBodyMeasurement(id);
 
-            if (measurementEntity == null)
+            if (bodymeasurementEntity == null)
                 return NotFound();
 
-            Mapper.Map(bodyMeasurement, measurementEntity);
+            Mapper.Map(bodyMeasurement, bodymeasurementEntity);
 
             if(!_bodyMeasurementsRepository.Save())
-                return StatusCode(500, "Something went wrong trying to update the measurement.");
+                return StatusCode(500, "Something went wrong trying to update the body measurement.");
 
             return Ok();
         }
 
-        // DELETE api/measurements/5
+        // DELETE api/body/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

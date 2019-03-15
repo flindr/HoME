@@ -5,7 +5,7 @@ using HoMeAPI.Models;
 
 namespace HoMeAPI.Entities
 {
-    public class Measurement
+    public class ClimateMeasurement
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

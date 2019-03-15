@@ -13,106 +13,106 @@ namespace HoMeAPI.Controllers
     [Route("api/[controller]")]
     public class ClimateController : Controller
     {
-        private readonly IMeasurementsRepository _measurementsRepository;
+        private readonly IClimateMeasurementsRepository _climateMeasurementsRepository;
         private readonly ILogger<ClimateController> _logger;
 
-        public ClimateController(IMeasurementsRepository measurementsRepository, ILogger<ClimateController> logger)
+        public ClimateController(IClimateMeasurementsRepository climateMeasurementsRepository, ILogger<ClimateController> logger)
         {
             _logger = logger;
-            _measurementsRepository = measurementsRepository;
+            _climateMeasurementsRepository = climateMeasurementsRepository;
         }
 
-        // GET api/measurements
+        // GET api/climate
         [HttpGet]
-        public IActionResult GetMeasurements([FromQuery]string from, [FromQuery]string to)
+        public IActionResult GetClimateMeasurements([FromQuery]string from, [FromQuery]string to)
         {
             DateTime.TryParse(from, out var fromDateTime);
             DateTime.TryParse(to, out var toDateTime);
 
-            List<Measurement> measurements;
+            List<ClimateMeasurement> climateMeasurements;
             if (from == null || to == null)
             {
                 _logger.LogInformation("Getting measurements");
-                measurements = _measurementsRepository.GetMeasurements().ToList();
+                climateMeasurements = _climateMeasurementsRepository.GetMeasurements().ToList();
             }
             else
             {
-                measurements = _measurementsRepository.GetMeasurements(fromDateTime, toDateTime).ToList();
+                climateMeasurements = _climateMeasurementsRepository.GetMeasurements(fromDateTime, toDateTime).ToList();
             }
 
 
-            if (!measurements.Any())
+            if (!climateMeasurements.Any())
             {
                 return NotFound();
             }
 
-            return Ok(measurements);
+            return Ok(climateMeasurements);
         }
 
-        // GET api/measurements/5
+        // GET api/climate/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var measurement = _measurementsRepository.GetMeasurement(id);
+            var climateMeasurement = _climateMeasurementsRepository.GetMeasurement(id);
 
-            if (measurement == null)
+            if (climateMeasurement == null)
                 return NotFound();
 
-            return Ok(measurement);
+            return Ok(climateMeasurement);
         }
 
-        // POST api/measurements
+        // POST api/climate
         [HttpPost]
-        public IActionResult Post([FromBody]MeasurementDto measurementDto)
+        public IActionResult Post([FromBody]ClimateMeasurementDto climateMeasurementDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (measurementDto == null)
+            if (climateMeasurementDto == null)
             {
                 return BadRequest();
             }
 
-            var measurement = Mapper.Map<Measurement>(measurementDto);
+            var climateMeasurement = Mapper.Map<ClimateMeasurement>(climateMeasurementDto);
 
             //TODO How to handle errors?
-            var success = _measurementsRepository.AddMeasurement(measurement);
+            var success = _climateMeasurementsRepository.AddMeasurement(climateMeasurement);
 
             if (success)
                 return Ok();
             return BadRequest();
         }
 
-        // PUT api/measurements/5
+        // PUT api/climate/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]MeasurementDto measurement)
+        public IActionResult Put(int id, [FromBody]ClimateMeasurementDto climateMeasurement)
         {
-            if (measurement == null)
+            if (climateMeasurement == null)
                 return BadRequest();
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var measurementEntity = _measurementsRepository.GetMeasurement(id);
+            var measurementEntity = _climateMeasurementsRepository.GetMeasurement(id);
 
             if (measurementEntity == null)
                 return NotFound();
 
-            Mapper.Map(measurement, measurementEntity);
+            Mapper.Map(climateMeasurement, measurementEntity);
 
-            if(!_measurementsRepository.Save())
-                return StatusCode(500, "Something went wrong trying to update the measurement.");
+            if(!_climateMeasurementsRepository.Save())
+                return StatusCode(500, "Something went wrong trying to update the climateMeasurement.");
 
             return Ok();
         }
 
-        // DELETE api/measurements/5
+        // DELETE api/climate/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _measurementsRepository.DeleteMeasurement(id);
+            _climateMeasurementsRepository.DeleteMeasurement(id);
         }
     }
 }

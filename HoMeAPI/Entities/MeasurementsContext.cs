@@ -6,11 +6,11 @@ namespace HoMeAPI.Entities
     {
         public MeasurementsContext(DbContextOptions options) : base(options)
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
             Database.Migrate();
         }
 
-        public DbSet<Measurement> Measurements { get; set; }
+        public DbSet<ClimateMeasurement> ClimateMeasurements { get; set; }
         public DbSet<BodyMeasurement> BodyMeasurements { get; set; }
     }
 }
